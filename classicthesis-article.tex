@@ -1,0 +1,146 @@
+% article example for classicthesis.sty
+\documentclass[10pt,a4paper]{article} % KOMA-Script article scrartcl
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+%\usepackage[utf8]{inputenc}
+%\usepackage[spanish]{babel}
+
+
+%\usepackage{lmodern}
+%\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{lipsum}
+\usepackage{url}
+\usepackage[nochapters]{classicthesis} % nochapters
+\usepackage{amsmath, amsfonts,amsthm}
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\begin{document}
+    \pagestyle{plain}
+    \title{\rmfamily\normalfont\spacedallcaps{Estimación de pose de la cabeza humana}}
+    \author{\spacedlowsmallcaps{Rajiv González}}
+    \date{} % no date
+    
+    \maketitle
+    
+    \begin{abstract}
+        Just a test.\footnote{This is a footnote.}
+    \end{abstract}
+       
+    \tableofcontents
+    
+    \section{Mapeo de coordenadas a ángulos}
+Uno de los problemas que hay que tomar en cuenta y definir en el presente trabajo de tesis antes de realizar los experimentos, es la relación que existe entre la ubicación en metros de lo que está mirando el sujeto de estudio en la pantalla y la pose de la cabeza de esta persona medida en ángulos, tomando en cuenta diversos aspectos como: la estatura de la persona, la distancia de la persona a la pantalla, cuál es el marco de referencia, etc. Esta sección consiste en describir cómo se realiza el mapeo (o la ecuación) de dicho objeto desplegado en pantalla y la orientación de la cabeza, primero se describirá la geometría del escenario. 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{pantalla2}
+	\caption{}\label{fig: figura}
+\end{figure}
+\\La pantalla que observa el sujeto del experimento se coloca en una pared a una distancia de $L_y$ metros del piso, la pantalla tiene unas dimensiones de $W$ m. de ancho y $L$ m. de alto. El sistema de coordenadas tiene su origen en la cámara y se ubica  encima de la pantalla y a la mitad del ancho W, \textbf{la recta que se encuentra a lo largo de W es paralela al eje $X$ y la que está a lo largo de L es paralela a $Y$}. Las personas se encontrarán paradas en un mismo plano (piso) y enfrente de la pantalla a una distancia $D_z$. Hay un punto en específico del rostro de las personas que es de interés y es el que se utiliza para realizar el análisis, este punto se define como $P$ y se encuentra a la mitad de la linea que une los ojos. El vector $\vec v$ sale del punto $P$ y es ortogonal al plano de la cara, el punto $P$ se encuentra a una distancia $H_y$ con respecto al piso y es dependiente de la estatura de la persona. Otro parámetro que se debe mencionar es el que hace referencia a la distancia que hay entre la persona y el origen sobre el eje $X$, es decir, la componente $X$ del punto $P$ de la persona y lo denotaremos como $a$.%La recta imaginaria que une el punto $P$ con el piso es $L_p$ y es perpendicular al plano del piso y por la misma razón es paralela al eje $Y$.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.36\textwidth]{personaMirando}
+	\caption{}\label{fig: figura}
+\end{figure}
+
+Como se puede observar en la figura 1.2 las personas tenemos tres tipos de movimiento de la cabeza: yaw, pitch y roll; sin embargo para el análisis de este proyecto solo se toman en cuenta el movimiento de yaw y pitch, ya que estos son los movimientos que se dan cuando una persona mueve su cabeza para observar el objeto en dos dimensiones de la pantalla.\\
+El objeto de la pantalla que la persona observa es representado como $S$ y el vector $\vec v$ representa la mirada de la persona o lo que es lo mismo $\vec{PS}$, cuando la persona se encuentre mirando $S$ el vector $\vec v$  debe apuntar a $S$, esto quiere decir que si se proyecta el vector sobre la misma dirección hacia la pantalla debe intersectar $S$.\\
+El objeto $S$ se desplazará a través de toda la pantalla $(X,Y)$ metros, tomando como marco de referencia la esquina superior izquierda de la pantalla, a esta esquina le corresponde la coordenada $(0,0)$, $(X,Y)$ es la esquina inferior derecha y $(\frac{X}{2}, \frac{Y}{2})$ el centro de la pantalla.
+La pose de la cabeza se mide mediante dos ángulos: $\phi_x$ y $\phi_y$.
+
+\begin{itemize}
+	\item $\phi_y$.- Observando desde el plano $Y-Z$ representa que tanto se desvía el vector $\vec v$% sobre la recta $D_z$ que hay entre la persona y la pantalla.
+	\item $\phi_x$.- Observando desde el plano $X-Z$ (desde arriba de la persona y la pantalla) representa que tanto se desvía el vector $\vec v$ %sobre la recta $D_z$.
+\end{itemize}
+De igual manera el ángulo $\phi_x$ indica el movimiento yaw que la persona realiza al mirar como se traslada el objeto $S$ y el ángulo $\phi_y$ el movimiento pitch.
+
+\section{Ecuaciones}
+Una vez definido el escenario y los aspectos a tomar en cuenta, ahora falta demostrar cual es la relación que se puede hallar entre la posición del objeto en la pantalla y la pose de la cabeza mediante los ángulos $\phi_x$ y $\phi_y$.
+
+\subsection{Desviación de $\phi_y$ y $\phi_x$}
+Para facilitar el análisis en esta sección se ilustra el escenario con todos los elementos en la figura 2.1
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.7\textwidth]{escenario}
+	\caption{Escenario y aspectos a tomar en cuenta}\label{fig: figura}
+\end{figure}
+\\El análisis comienza observando la escena desde el plano $Y-Z$, primero se definen dónde se encuentran con respecto al sistema de coordenadas los puntos más importantes, los cuales son: $S$ y $P$. Supongamos que el objeto a observar está en la coordenada $(x,y)$ de la pantalla, como se había mencionado previamente el sistema de coordenadas se encuentra centrado en la cámara,  a la mitad de la pantalla con respecto al eje $X$ y a una pequeña altura $c_y$ m. con respecto al eje y, el movimiento de $S$ yace sobre el plano $X-Y$ por lo que su componente en $z$ es igual cero, entonces:
+
+\begin{eqnarray}
+S= [S_x, S_y, S_z]^T= [x-W/2, -(c_y+y), 0]^T
+\end{eqnarray}
+Para hallar las componentes de P se toma la distancia $D_z$ a la que se encuentra del origen sobre el eje $Z$, como se había mencionado la persona se desplaza $a$ m sobre el eje $X$ y se encuentra a una distancia sobre el eje y de $L_y+L-H_y$:
+\begin{eqnarray}
+P=[P_x, P_y, P_z]^T= [a, -(L_y+L-H_y), D_z]^T
+\end{eqnarray}
+
+Ahora que que ya se definieron donde se encuentran los puntos que se utilizarán con respecto al marco de referencia centrado en la cámara, se necesitan los ángulos entre la posición del vector $\vec v=\vec {PS}$ y cada uno de los ejes que son de interés, estos ángulos se conocen como cosenos directores del vector $\vec v$ y únicamente son necesarios los que se forman con el eje $Y$ y el $X$.
+Las fórmulas de los cosenos directores son:
+\begin{eqnarray}
+cos(\phi_y)=\frac{\vec v_y}{|\vec v|}\\
+cos(\phi_x)=\frac{\vec v_x}{|\vec v|}
+\end{eqnarray}
+
+donde $|\vec v|$ se halla mediante:
+\begin{eqnarray}
+ \sqrt{\vec v_{x}^2+\vec v_{y}^2+\vec v_{z}^2}=\sqrt{(x-\frac{W}{2}-a)^2+(-c_y-y+(L_y+L-H_y))^2+(-D_z)^2}
+\end{eqnarray}
+\\Por lo tanto los ángulos de desviación son:
+
+\begin{eqnarray}
+\phi_y=cos^{-1} (\frac{-c_y-y+(L_y+L-H_y)}{\sqrt{(x-\frac{W}{2}-a)^2+(-c_y-y+(L_y+L-H_y))^2+(-D_z)^2}})\\
+\phi_x=cos^{-1}(\frac{x-\frac{W}{2}-a}{\sqrt{(x-\frac{W}{2}-a)^2+(-c_y-y+(L_y+L-H_y))^2+(-D_z)^2}})
+\end{eqnarray}
+
+ \section{Análisis del comportamiento de los ángulos $\phi_x$ y $\phi_y$} 
+ Durante la etapa de entrenamiento se requiere capturar bastantes imágenes de personas de frente a la pantalla, con el rostro en diferentes orientaciones debido a que está mirando el objeto en pantalla en diferentes posiciones, esto quiere que durante la etapa de captura de datos se debe variar la posición del objeto en pantalla que la persona del experimento está mirando y también se debe variar la posición de la persona en el lugar del experimento. Sea una instancia de captura de datos la captura de la imagen de una persona anotando su ubicación en el lugar del experimento, la posición del objeto y la orientación de la cabeza (ángulos $\phi_x$ y $phi_y$).
+ \\Se llega a dar una extensa cantidad de instancias de captura por cada persona variando los parámetros mencionados, lo que llevaría a bastante tiempo de captura de instancias por cada persona y sería muy inconveniente para ellas, por lo tanto se realizó un análisis antes de realizar los experimentos del comportamiento de los ángulos en diferentes circunstancias, el análisis fue realizado mediante el software matemático Octave y a continuación se discuten los resultados.
+ Suponiendo que es una pantalla ed 42 pulgadas y el marco de referencia se encuentra en la cámara encima de la pantalla.
+ \begin{itemize}
+ 	\item Ancho de la pantalla: $W=0.9282m$
+ 	\item Largo de la pantalla: $L=0.5523m$
+ 	\item Distancia de la pantalla al piso: $Ly=1.5m$
+ 	\item Distancia de la cámara a la pantalla: $Cy=0.05m$
+ 	\item Estatura del sujeto del experimento: $Hy=1.6m$
+ 	\item Movimiento de la persona a través del eje $Z$: de $0.1m$ a $3m$ con pasos de $0.51786m$
+ 	\item Movimiento de la persona a través del eje $X$: de $-3m$ a $3m$ con pasos de $0.109m$
+ 	\item Movimiento de la figura en pantalla a través del eje $X$: de $-\frac{W}{2}m$ a $\frac{W}{2}m$ con pasos de $0.01658m$
+ 	\item Movimiento de la figura en pantalla a través del eje $Y$: de $-Cy$ a $-(Cy+L)m$ con pasos de $0.051786m$
+ \end{itemize}
+ 
+ \begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[width=0.6\textwidth]{figure1}
+ 	\caption{}\label{fig: figura}
+ \end{figure}
+ 
+ En la gráfica de la figura 3.1 se puede observar la variación de los ángulos $\phi_x$ y $\phi_y$ con la persona en una única posición: $P=[0, -(L_y+L-H_y), 1]^T$, la variación de la figura en pantalla (en el eje $x$ y $y$) de lo que observan es graficada con el marco de referencia centrado en la esquina superior izquierda de la pantalla, sin embargo los cálculos se hacen tomando la posición de la cámara como marco de referencia. El mayor cambio que ocurre en los ángulos es con respecto a $\phi_x$ de 2 a 1.1 radianes que son 0.9 radianes o 51.5662 grados, lo cual parece tener mucho sentido ya que el desplazamiento se hace en el eje de $\phi_x$. 
+ \\Lo que resulta peculiar es que a pesar de que no hay desplazamiento en el eje y de la figura  si hay una ligera variación en el ángulo $\phi_y$ de la mirada de la persona, esto se debe al punto de fuga. El punto de fuga es el lugar geométrico en el cual las proyecciones de las rectas paralelas a una dirección dada en el espacio, no paralelas al plano de proyección, convergen, lo anterior se puede ver ilustrado en la figura 3.2, el punto de fuga es el lugar donde convergen todas líneas "paralelas" de color verde, y la línea del horizonte es la recta horizontal de color azul.
+ \begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[width=0.3\textwidth]{fuga}
+ 	\caption{}\label{fig: figura}
+ \end{figure}
+ Cuando la figura inicialmente se encuentra en una posición superior a la de los ojos y se mueve hacia uno de los extremos de la pantalla, ésta pareciera moverse hacia abajo (hacia el horizonte) y cuando inicialmente la figura se encuentra en una posición inferior a la de los ojos de la persona y se mueve hacia un extremo, ésta pareciera moverse hacia arriba por lo tanto la mirada de las personas en el eje $y$ tiende a moverse.
+ 
+ \begin{figure}[htbp]
+ 	\centering
+ 	\includegraphics[width=0.6\textwidth]{figure2}
+ 	\caption{}\label{fig: figura}
+ \end{figure}
+ La gráfica de la figura 3.3	la figura que observan las personas únicamente se desplaza en el eje $y$, en este caso el único desplazamiento de la mirada es con respecto al ángulo  $\phi_y$, al desplazarse el objeto en pantalla de $0.5523m$ la mirada varía de $1.2$ a $1.7$ radianes, es decir, $0.5$ radianes o lo que e lo mismo $28.6479$ grados.
+
+
+   
+    
+    % bib stuff
+    \nocite{*}
+    \addtocontents{toc}{\protect\vspace{\beforebibskip}}
+    \addcontentsline{toc}{section}{\refname}    
+    \bibliographystyle{plain}
+    \bibliography{../Bibliography}
+\end{document}

@@ -154,7 +154,15 @@ La gráfica 3.4 describe el caso en el únicamente la  persona se mueve sobre el e
   	\includegraphics[width=0.6\textwidth]{figure4}
   	\caption{}\label{fig: figura}
   \end{figure}
-  En la gráfica 3.6 se puede apreciar que mientras se va alejando la persona el único ángulo de la mirada que varía es $\phi_y$, va de $0.6 a 1.55$ radianes, esto quiere decir que hay una variación en el ángulo de 0.95 radianes o 51.56 grados hacia abajo cuando la persona se aleja, además se puede observar que a partir de 1.5m la variación que hay es muy pequeña, de 0 a 0.8m es cuando se da la mayor variación. Lo anterior se puede explicar  con la linea de fuga, mientras la persona se aleja el objeto pareciera moverse hacia abajo y establecer con la mirada de la persona en 1.6 radianes o 91 grados, en el horizonte
+  En la gráfica 3.6 se puede apreciar que mientras se va alejando la persona el único ángulo de la mirada que varía es $\phi_y$, va de $0.6 a 1.55$ radianes, esto quiere decir que hay una variación en el ángulo de 0.95 radianes o 51.56 grados hacia abajo cuando la persona se aleja, además se puede observar que a partir de 1.5m la variación que hay es muy pequeña, de 0 a 0.8m es cuando se da la mayor variación. Lo anterior se puede explicar  con la linea de fuga, mientras la persona se aleja el objeto pareciera moverse hacia abajo y establecer con la mirada de la persona en 1.6 radianes o 91 grados, en el horizonte.
+  
+  \section{Simulación processing}
+  \section{Dispositivo para adquirir datos}
+  Durante la etapa de adquisición de datos para el algoritmo de entrenamiento además de conocer la ubicación de la persona y la de la figura que observan en pantalla es necesario capturar una imagen del rostro de la persona y conocer (mediante un aparato de medición) la orientación de la cabeza, lo anterior es necesario para evaluar y compararar el sistema de estimación de pose. \\
+  Como señalan en [Murphy-Chutorian, 2009] el método que se utilice parapara obtener las medidas de la orientación de la cabeza en el conjunto de entrenamiento debe ser preciso y entre los métodos más eficientes proponen los sistemas captura ópticos de movimiento y los sensores inerciales, sin embargo los primeros son muy costosos, por lo que en el desarrollo del presente trabajo de tesis se optó por utilizar un sensor inercial, el cual consiste de acelerómetros y giroscopios a menudo acoplados con algún tipo de filtro para reducir ruido.
+  
+  En este apartado se describirá el proceso de diseño y fabricación del dispositivo que realiza la medición de la orientación.\\
+  El sensor que se encarga de La orientación se mide 
     
     % bib stuff
     \nocite{*}

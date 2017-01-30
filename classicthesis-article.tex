@@ -155,8 +155,19 @@ La gráfica 3.4 describe el caso en el únicamente la  persona se mueve sobre el e
   	\caption{}\label{fig: figura}
   \end{figure}
   En la gráfica 3.6 se puede apreciar que mientras se va alejando la persona el único ángulo de la mirada que varía es $\phi_y$, va de $0.6 a 1.55$ radianes, esto quiere decir que hay una variación en el ángulo de 0.95 radianes o 51.56 grados hacia abajo cuando la persona se aleja, además se puede observar que a partir de 1.5m la variación que hay es muy pequeña, de 0 a 0.8m es cuando se da la mayor variación. Lo anterior se puede explicar  con la linea de fuga, mientras la persona se aleja el objeto pareciera moverse hacia abajo y establecer con la mirada de la persona en 1.6 radianes o 91 grados, en el horizonte.
-  
+
   \section{Simulación processing}
+Se realizó una simulación mediante el software processing del análisis anterior, esto se hizo para poder observar el comportamiento de los ángulos en diferentes posiciones de las personas al mismo tiempo y variar en tiempo real y de manera interactiva la posición en el eje $X$ y $Y$ de la figura en pantalla. Los parámetros del escenario son los mismos a los utilizados en la análisis anterior: $W$, $L$, $LY$, $Cy$ y $Hy$. \\
+En la figura 4.1 se puede apreciar una figura de la simulación, en ella se despliegan 36 posiciones de personas separadas por 1m en el eje $X$ y 0.5m en el eje $Y$. La variación en el eje $Y$ se da por medio de la barra deslizante que se encuentra en la esquina inferior derecha, va de 0 a 0.5523m y el desplazamiento en el $Y$ se logra haciendo click en la figura (óvalo blanco) en pantalla que se encuentra en la parte superior de la ventana de la simulación y sin soltar el mouse se arrastra la figura de izquierda a derecha. Los ángulos $\phi_x$ y $\phi_y$ además de ser mostrados en cada una de las posiciones son representados mediante el radio del círculo que representa cada persona y la línea que sale de dicho ángulo, $\phi_x$ es la línea y $\phi_y$ es el radio.\\
+  \begin{figure}[htbp]
+  	\centering
+  	\includegraphics[width=1\textwidth]{sim}
+  	\caption{}\label{fig: figura}
+  \end{figure}
+Mediante la simulación de igual manera se demostró como al arrastrar la figura únicamente en $X$ no solo varía $\phi_x$ sino también $\phi_y$ de todas las instancias, esto se puede corroborar en los valores de los ángulos y en el área del círculo.
+
+  %Debo detallar más la programación en esta sección?: Clases, funciones
+  
   \section{Dispositivo para adquirir datos}
   Durante la etapa de adquisición de datos para el algoritmo de entrenamiento, además de conocer la ubicación de la persona y la de la figura que observan en pantalla es necesario capturar una imagen del rostro de la persona y conocer (mediante un aparato de medición) la orientación de la cabeza, lo anterior es necesario para evaluar y compararar el sistema de estimación de pose. \\
   Como señalan en [Murphy-Chutorian, 2009] el método que se utilice para obtener las medidas de la orientación de la cabeza en el conjunto de entrenamiento debe ser preciso y entre los métodos más eficientes proponen los sistemas captura ópticos de movimiento y los sensores inerciales, sin embargo, los primeros son muy costosos, por lo que en el desarrollo del presente trabajo de tesis se optó por utilizar un sensor inercial, el cual consiste de acelerómetros y giroscopios a menudo acoplados con algún tipo de filtro para reducir ruido.
@@ -211,6 +222,21 @@ Los xbee son módulos inalámbricos creados para la comunicación inalámbrica entre
 	   	\caption{}\label{fig: figura}
     \end{figure}
     Adicionalmente se creo una pequeña tarjeta para la recepción de datos a través del otro xbee y envío a la computadora mediante un cable con convertidor de rs232 a usb. Más adelante se detallará el programa para la recepción de datos.
+    
+    \subsection{tarjeta electrónica}
+    En las siguientes imágenes se presentan: la tarjeta electrónica con el imu, arduino y xbee ya fabricada; la batería recargable de 3.7v; la tarjeta que conecta el xbee receptor con la computadora y el cable USB-serial para enviar los datos recibidos por los xbees hacia la computadora.
+        \begin{figure}[htbp]
+        	\centering
+        	\includegraphics[width=.5\textwidth]{placa1}
+        	\includegraphics[width=.5\textwidth]{placa2}
+        	\caption{tarjeta con el IMU}\label{fig: figura}
+        \end{figure}
+        \begin{figure}[htbp]
+        	\centering
+        	\includegraphics[width=.3\textwidth]{pila}
+        	\caption{}\label{fig: figura}
+        \end{figure}
+    
     % bib stuff
     \nocite{*}
     \addtocontents{toc}{\protect\vspace{\beforebibskip}}

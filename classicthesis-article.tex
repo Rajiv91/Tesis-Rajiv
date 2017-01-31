@@ -14,10 +14,12 @@
 \usepackage{url}
 \usepackage[nochapters]{classicthesis} % nochapters
 \usepackage{amsmath, amsfonts,amsthm}
+\usepackage{enumitem}
 
 \numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 \numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
 \numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
 
 \begin{document}
     \pagestyle{plain}
@@ -32,6 +34,89 @@
     \end{abstract}
        
     \tableofcontents
+    
+    \section{Resumen}
+    
+    
+    \section{Objetivos}
+    \subsection{objetivo general}
+    Detectar el rostro de las personas y estimar su pose relativa a un plano virtual situado enfrente de ellas, asociando regiones en dicho plano con información de textura de los rostros detectados y su posición. Lo anterior debe ser capaz de funcionar en tiempo real.
+    \subsection{objetivos específicios}
+    \begin{itemize}
+    	\item Generar una base de datos de rostros humanos con la información de
+    	pose asociada.
+    	\item Desarrollar el sistema para que funcione en un rango de distancia am-
+    	plio entre la persona y la cámara.
+    	\item Implementación de un algoritmo clasificador para asociar la región que
+    	se observa con poses determinadas.
+    \end{itemize}
+    
+    \section{Introducción}
+    Conocer la posición, orientación y movimiento de la cabeza son cuestiones de gran importancia ya que pueden ayudar a las personas a interactuar con las computadoras de una forma más natural a como se realiza actualmente, dando como resultado en útiles en aplicaciones como: video conferencias, controles o interfaces hombre-máquina especiales, aplicaciones de realidad virtual. Además, si se toma en cuenta hacia dónde está mirando la persona y el tiempo que lleva en cierta posición puede proporcionar información adicional que ayudaría a inferir si está muy atenta a lo que está observando o si la persona está durmiendo.\\
+    Por medio del análisis de imágenes capturadas a personas y en combinación con algoritmos de aprendizaje automático es posible conocer la posición y  orientación de sus cabezas con respecto a un marco de referencia, la infor-
+    mación obtenida puede ayudar a conocer qué es lo que están observando las personas.
+    
+    
+    
+    \section{Marco teórico}
+    En el área de visión computacional la estimación de la pose de una cabeza es el proceso de inferir la orientación y la posición de una cabeza humana a partir de las imágenes [Murphy et al, 2009]. El estimador debe ser robusto a distorsiones causadas por la cámara, a las expresiones faciales, al cabello, al vello facial y a objetos que ocluyan la cabeza como por ejemplo unos lentes o sombreros.\\
+    Existen algunos aspectos que se deben tomar en cuenta al realizar investigación en de este tema: se necesita previamente localizar la cabeza de las personas; la cabeza humana puede ser modelada como un objeto rígido sin tomar en cuenta el resto del cuerpo humano; la estimación de la pose de la  cabeza se hace con respecto a un marco de referencia centrado en la cámara y de manera más general a un sistema global de coordenadas; para estimar la mirada de las personas con precisión en cualquier configuración un sistema seguidor de ojos debe ser complementado con el sistema de estimación de la  pose de la cabeza. [Wang et al, 2009].\\
+    Actualmente se han realizado  una gran diversidad de métodos que se pueden emplear para solucionar el problema de la estimación de la pose de la cabeza, razón por la cual motivó a Murphy-Chutorian y Manubhai a desarrollar una taxonomía sobre los enfoques más importantes, en ella se presenta la clasificación de los métodos tomando como principal parámetro de clasificación el enfoque fundamental sobre el cual subyace la implementación del método. Las clasificaciones son:
+    \begin{itemize}
+    	\item \textit{Métodos de apariencias de plantillas}.- Este método utiliza métricas de comparación basadas en imágenes para hacer correspondencias de la pose de una cabeza con un conjunto de ejemplos (plantillas) con las poses etiquetadas, hace la correspondencia con las más similares de las plantillas. El método no requiere entrenamiento con ejemplos negativos, solo requiere los ejemplos etiquetados.\\
+    	Desventajas:
+    	\begin{enumerate}[label=(\alph*)]
+			\item Solo estiman posiciones discretas
+			\item Se requiere saber dónde se localiza el rostro
+			\item Ineficiente con muchos ejemplos
+			\item Ineficiente con imágenes de la misma persona del entrenamiento y durante la prueba
+    	\end{enumerate}
+%    Como posible solución a la ineficiencia en la detección y después estimación de pose se propone: SVM
+%    Posible solución a los errores de estimación: filtro Laplacian-of-Gaussian	
+		\item \textit{Métodos detectores en forma de arreglo}.- Se entrenan múltiples detectores de rostro con diferentes poses discretas, la diferencia con el método anterior es que la imagen de entrada es evaluada con un detector entrenado con bastantes imágenes y un algoritmo supervisado.
+    	\\Ventajas:
+    	\begin{enumerate}[label=(\alph*)]
+    		\item La detección y localización no son etapas diferentes
+    		\item Son buenos con imágenes con alta y baja resolución
+    	\end{enumerate}
+		Desventajas:
+    	\begin{enumerate}[label=(\alph*)]
+    		\item Se requieren bastantes imágenes de entrenamiento
+    		\item Es difícil implementar el arreglo con un número de detectores  extenso en un sistema en tiempo real
+    		\item Podrían darse ambigüedades en la clasificación (múltiples clasificaciones positivas).
+    	\end{enumerate}
+
+		\item \textit{Métodos de regresión no lineal}.- Estiman la pose mediante el aprendizaje de una función no lineal de mapeo desde un espacio de imágenes a una o más direcciones de pose. Con un conjunto de entrenamiento se puede construir un modelo que estime de forma discreta o continua una pose.
+			\\Desventajas:
+			\begin{enumerate}[label=(\alph*)]
+				\item No es claro cómo se utilizará la herramienta específica de la regresión
+				\item La estimación realizada es tosca (coarse) en las ubicaciones discretas
+				\item Son propensas al error
+			\end{enumerate}
+				
+			Las ventajas de utilizar este método con redes neuronales son:
+			\begin{enumerate}[label=(\alph*)]
+				\item Bastante rápidos
+				\item Solo requieren imágenes etiquetadas para entrenamiento
+				\item Arrojan los resultados más exactos en la práctica.
+			\end{enumerate}
+
+    \end{itemize}
+    
+%     , métodos detectores en forma de arreglo, métodos de regresión no lineal, métodos de variedad-embebida, modelos flexibles, métodos geométricos, métodos de seguimiento y métodos híbridos.
+    Así como existen muchas diferencias entre los métodos también hay unas características que prevalecen:
+    \begin{itemize}
+    	\item Como métrica para conocer el desempeño de los métodos se utiliza el error de la media absoluta angular para pitch, roll y yaw.
+    	\item Mientras más poses se deseen estimar la clasificación se vuelve más difícil y propensa a cometer más errores.
+    	\item Un gran número de los enfoques en algún punto del proceso de estimación utilizan un algoritmo de aprendizaje automático, los más comunes son las redes neuronales [Brown et al, 2002], support vector machine [Huang et al, 1998], y los métodos de boosting como el floatboost [Zhang et al, 2006].
+    	\item Se logra mucha precisión en la estimación mediante la utilización de cámaras de visión estéreo.
+    	\item La variación de la pose está restringida a un rango que contiene todas las características visibles del rostro (que se utilizan para la clasificación ) desde una vista frontal.
+    \end{itemize}
+    
+    %Añadir un parrafo de lo que aporta el de nosotros (plano)
+    %Tomando en cuenta las consideraciones anteriores 
+    %El proyecto de tesis propuesto además de estimar la pose de la cabeza mediante algoritmos de aprendizaje automático utilizará dichos algoritmos para asociarle a las cabezas humanas una región 
+    Como ya se ha mencionado anteriormente para estimar la mirada con precisión se necesita un sistema de detección y seguimiento de ojos además de múltiples cámaras y el sistema de estimación de pose de la cabeza, habiendo señalado lo anterior cabe destacar que el proyecto que se desarrollará más que estimar la mirada con precisión (además de la pose de la cabeza) representándola como un vector normal al iris,  se pretende estimar una región en un plano virtual enfrente de ellas, la región indicaría lo que están observando las personas de la escena que tienen enfrente. 
     
     \section{Mapeo de coordenadas a ángulos}
 Uno de los problemas que hay que tomar en cuenta y definir en el presente trabajo de tesis antes de realizar los experimentos, es la relación que existe entre la ubicación en metros de lo que está mirando el sujeto de estudio en la pantalla y la pose de la cabeza de esta persona medida en ángulos, tomando en cuenta diversos aspectos como: la estatura de la persona, la distancia de la persona a la pantalla, cuál es el marco de referencia, etc. Esta sección consiste en describir cómo se realiza el mapeo (o la ecuación) de dicho objeto desplegado en pantalla y la orientación de la cabeza, primero se describirá la geometría del escenario. 
@@ -239,9 +324,23 @@ Los xbee son módulos inalámbricos creados para la comunicación inalámbrica entre
         
         \begin{figure}[htbp]
         	\centering
-        	\includegraphics[width=.3\textwidth]{placa3}
-        	\caption{ta}\label{fig: figura}
+        	\includegraphics[width=.5\textwidth]{placa3}
+        	\caption{tarjeta receptora de datos}\label{fig: figura}
         \end{figure}
+    
+\section{Rotaciones en los pares de posiciones}
+    Se eligió como forma de representación de la pose de la cabeza los cuaterniones, los cuales son obtenidos mediante el IMU, como se había mencionado el dispositivo se colocará en la cabeza de las personas durante el entrenamiento para la generación del "ground truth", sin embargo, aún falta considerar los siguientes detalles:
+    \begin{itemize}
+    	\item ¿Cuáles posiciones en el piso con respecto al marco de referencia centrado en la cámara  se utilizaron para capturar la información(imagen rostro y pose en cuaterniones)?.
+    	\item ¿A quá distancia estarán las posiciones entre si y hasta que distancia máxima se tomarán datos, es decir, cual es el mínimo en $X$ y $Z$ que se debe seleccionar? ya que como se observó en la sección de \textit{Análisis del comportamiento de los ángulos $\phi_x$ y $\phi_y$} dependiendo de los parámetros del experimento hay valores en los cuales ya no vale la pena hacer análisis ya que las variaciones en los ángulos es muy pequeño o inexistente.
+    	\item ¿Cuáles posiciones para la figura en pantalla se deben utilizar?.
+    	\item ¿Cuántas posiciones de figura en pantalla y personas en el piso se considerarán?
+    	\item ¿Cómo lidiar con las pequeñas variaciones en las mediciones del IMU que se den en diferentes personas en los mismas instancias de experimentación?
+    	
+    \end{itemize} 
+    
+    \subsection{Cálculo de todas las rotaciones posibles}
+
     
     % bib stuff
     \nocite{*}

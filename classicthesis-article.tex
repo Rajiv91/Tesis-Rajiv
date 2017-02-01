@@ -100,6 +100,22 @@
 				\item Solo requieren imágenes etiquetadas para entrenamiento
 				\item Arrojan los resultados más exactos en la práctica.
 			\end{enumerate}
+			
+		\item \textit{Métodos de variedad-embebida o manifold}.- Este método busca manifolds de baja dimensión que modelen la variación continua en la pose de la cabeza. Nuevas imágenes pueden ser incrustadas en estos manifolds y después utilizarlos para la estimación con técnicas como la regresión en el espacio embebido. Cualquier algoritmo de reducción de dimensionalidad puede ser considerado como un intento de un manifold embebido, pero la dificultad yace en crear un algoritmo que exitosamente recupere la pose de la cabeza mientras ignora otras fuentes de variación en la imagen.
+		\\Desventajas:
+		\begin{enumerate}[label=(\alph*)]
+			\item Al igual que con los detectores en forma de arreglo la estimación de la pose es tosca ya que la estimación se deriva de un conjunto discreto de mediciones.
+			\item La heterogeneidad en los datos de entrenamiento que es común en muchos escenarios de entrenamiento en el mundo real, representan un problema. Para contrarrestar lo anterior es necesario entrenar un manifold con múltiples personas, pero a menudo es imposible obtener un muestreo regular de poses de cada individuo.
+			\item 
+		\end{enumerate}
+		Ventajas:
+		\begin{enumerate}[label=(\alph*)]
+			\item 
+			\item 
+			\item 
+		\end{enumerate}
+		
+		%Para la estimación de la pose el manifold debe ser modelado y una técnica de incrustación (embedding) es requerida para proyectar una nueva muestra dentro del manifold. Esta incrustación puede ser usado para la estimación de la pose con técnicas tales como la regresión en el espacio embebido
 
     \end{itemize}
     

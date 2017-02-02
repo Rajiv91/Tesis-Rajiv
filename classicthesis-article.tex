@@ -138,13 +138,13 @@
 Uno de los problemas que hay que tomar en cuenta y definir en el presente trabajo de tesis antes de realizar los experimentos, es la relación que existe entre la ubicación en metros de lo que está mirando el sujeto de estudio en la pantalla y la pose de la cabeza de esta persona medida en ángulos, tomando en cuenta diversos aspectos como: la estatura de la persona, la distancia de la persona a la pantalla, cuál es el marco de referencia, etc. Esta sección consiste en describir cómo se realiza el mapeo (o la ecuación) de dicho objeto desplegado en pantalla y la orientación de la cabeza, primero se describirá la geometría del escenario. 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.5\textwidth]{pantalla2}
+	\includegraphics[width=0.5\textwidth]{./pictures/pantalla2}
 	\caption{}\label{fig: figura}
 \end{figure}
 \\La pantalla que observa el sujeto del experimento se coloca en una pared a una distancia de $L_y$ metros del piso, la pantalla tiene unas dimensiones de $W$ m. de ancho y $L$ m. de alto. El sistema de coordenadas tiene su origen en la cámara y se ubica  encima de la pantalla y a la mitad del ancho W, \textbf{la recta que se encuentra a lo largo de W es paralela al eje $X$ y la que está a lo largo de L es paralela a $Y$}. Las personas se encontrarán paradas en un mismo plano (piso) y enfrente de la pantalla a una distancia $D_z$. Hay un punto en específico del rostro de las personas que es de interés y es el que se utiliza para realizar el análisis, este punto se define como $P$ y se encuentra a la mitad de la linea que une los ojos. El vector $\vec v$ sale del punto $P$ y es ortogonal al plano de la cara, el punto $P$ se encuentra a una distancia $H_y$ con respecto al piso y es dependiente de la estatura de la persona. Otro parámetro que se debe mencionar es el que hace referencia a la distancia que hay entre la persona y el origen sobre el eje $X$, es decir, la componente $X$ del punto $P$ de la persona y lo denotaremos como $a$.%La recta imaginaria que une el punto $P$ con el piso es $L_p$ y es perpendicular al plano del piso y por la misma razón es paralela al eje $Y$.
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.36\textwidth]{personaMirando}
+	\includegraphics[width=0.36\textwidth]{./pictures/personaMirando}
 	\caption{}\label{fig: figura}
 \end{figure}
 
@@ -166,7 +166,7 @@ Una vez definido el escenario y los aspectos a tomar en cuenta, ahora falta demo
 Para facilitar el análisis en esta sección se ilustra el escenario con todos los elementos en la figura 2.1
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.7\textwidth]{escenario}
+	\includegraphics[width=0.7\textwidth]{./pictures/escenario}
 	\caption{Escenario y aspectos a tomar en cuenta}\label{fig: figura}
 \end{figure}
 \\El análisis comienza observando la escena desde el plano $Y-Z$, primero se definen dónde se encuentran con respecto al sistema de coordenadas los puntos más importantes, los cuales son: $S$ y $P$. Supongamos que el objeto a observar está en la coordenada $(x,y)$ de la pantalla, como se había mencionado previamente el sistema de coordenadas se encuentra centrado en la cámara,  a la mitad de la pantalla con respecto al eje $X$ y a una pequeña altura $c_y$ m. con respecto al eje y, el movimiento de $S$ yace sobre el plano $X-Y$ por lo que su componente en $z$ es igual cero, entonces:
@@ -215,7 +215,7 @@ donde $|\vec v|$ se halla mediante:
  
  \begin{figure}[htbp]
  	\centering
- 	\includegraphics[width=0.6\textwidth]{figure1}
+ 	\includegraphics[width=0.6\textwidth]{./pictures/figure1}
  	\caption{}\label{fig: figura}
  \end{figure}
  
@@ -223,28 +223,28 @@ donde $|\vec v|$ se halla mediante:
  \\Lo que resulta peculiar es que a pesar de que no hay desplazamiento en el eje y de la figura  si hay una ligera variación en el ángulo $\phi_y$ de la mirada de la persona, esto se debe al punto de fuga. El punto de fuga es el lugar geométrico en el cual las proyecciones de las rectas paralelas a una dirección dada en el espacio, no paralelas al plano de proyección, convergen, lo anterior se puede ver ilustrado en la figura 3.2, el punto de fuga es el lugar donde convergen todas líneas "paralelas" de color verde, y la línea del horizonte es la recta horizontal de color azul.
  \begin{figure}[htbp]
  	\centering
- 	\includegraphics[width=0.3\textwidth]{fuga}
+ 	\includegraphics[width=0.3\textwidth]{./pictures/fuga}
  	\caption{}\label{fig: figura}
  \end{figure}
  Cuando la figura inicialmente se encuentra en una posición superior a la de los ojos y se mueve hacia uno de los extremos de la pantalla, ésta pareciera moverse hacia abajo (hacia el horizonte) y cuando inicialmente la figura se encuentra en una posición inferior a la de los ojos de la persona y se mueve hacia un extremo, ésta pareciera moverse hacia arriba por lo tanto la mirada de las personas en el eje $y$ tiende a moverse.
  
  \begin{figure}[htbp]
  	\centering
- 	\includegraphics[width=0.6\textwidth]{figure2}
+ 	\includegraphics[width=0.6\textwidth]{./pictures/figure2}
  	\caption{}\label{fig: figura}
  \end{figure}
 En la gráfica de la figura 3.3	se puede apreciar que el objeto que observan las personas en pantalla únicamente se desplaza en el eje $y$, en este caso el único desplazamiento de la mirada es con respecto al ángulo  $\phi_y$, al desplazarse el objeto de $0.5523m$ la mirada varía de $1.2$ a $1.7$ radianes, es decir, $0.5$ radianes o lo que e lo mismo $28.6479$ grados.
 
  \begin{figure}[htbp]
  	\centering
- 	\includegraphics[width=0.6\textwidth]{figure3}
+ 	\includegraphics[width=0.6\textwidth]{./pictures/figure3}
  	\caption{}\label{fig: figura}
  \end{figure}
 
 La gráfica 3.4 describe el caso en el únicamente la  persona se mueve sobre el eje $X$ de $-3$ a $3$m, el mayor desplazamiento lo tiene el ángulo $\phi_x$, de esta gráfica se puede concluir que la mayor variación en el ángulo se da entre $-1$ y $1m$ la cual la mirada varía de $0.8$ a $2.36$ radianes, si la persona se mueve más allá de esta distancia la mirada tiende a estabilizarse y no valdría la pena hacer experimentos en estas zonas. Lo anterior se ve con mayor claridad en la figura 3.5, aquí se amplio el rango en el que se mueve la persona sobre el eje $X$ y en consecuencia $\phi_x$ tiende a estabilizarse.
  \begin{figure}[htbp]
  	\centering
- 	\includegraphics[width=0.6\textwidth]{figure5}
+ 	\includegraphics[width=0.6\textwidth]{./pictures/figure5}
  	\caption{}\label{fig: figura}
  \end{figure}
  
@@ -252,7 +252,7 @@ La gráfica 3.4 describe el caso en el únicamente la  persona se mueve sobre el e
  
   \begin{figure}[htbp]
   	\centering
-  	\includegraphics[width=0.6\textwidth]{figure4}
+  	\includegraphics[width=0.6\textwidth]{./pictures/figure4}
   	\caption{}\label{fig: figura}
   \end{figure}
   En la gráfica 3.6 se puede apreciar que mientras se va alejando la persona el único ángulo de la mirada que varía es $\phi_y$, va de $0.6 a 1.55$ radianes, esto quiere decir que hay una variación en el ángulo de 0.95 radianes o 51.56 grados hacia abajo cuando la persona se aleja, además se puede observar que a partir de 1.5m la variación que hay es muy pequeña, de 0 a 0.8m es cuando se da la mayor variación. Lo anterior se puede explicar  con la linea de fuga, mientras la persona se aleja el objeto pareciera moverse hacia abajo y establecer con la mirada de la persona en 1.6 radianes o 91 grados, en el horizonte.
@@ -262,7 +262,7 @@ Se realizó una simulación mediante el software processing del análisis anterior,
 En la figura 4.1 se puede apreciar una figura de la simulación, en ella se despliegan 36 posiciones de personas separadas por 1m en el eje $X$ y 0.5m en el eje $Y$. La variación en el eje $Y$ se da por medio de la barra deslizante que se encuentra en la esquina inferior derecha, va de 0 a 0.5523m y el desplazamiento en el $Y$ se logra haciendo click en la figura (óvalo blanco) en pantalla que se encuentra en la parte superior de la ventana de la simulación y sin soltar el mouse se arrastra la figura de izquierda a derecha. Los ángulos $\phi_x$ y $\phi_y$ además de ser mostrados en cada una de las posiciones son representados mediante el radio del círculo que representa cada persona y la línea que sale de dicho ángulo, $\phi_x$ es la línea y $\phi_y$ es el radio.\\
   \begin{figure}[htbp]
   	\centering
-  	\includegraphics[width=1\textwidth]{sim}
+  	\includegraphics[width=1\textwidth]{./pictures/sim}
   	\caption{}\label{fig: figura}
   \end{figure}
 Mediante la simulación de igual manera se demostró como al arrastrar la figura únicamente en $X$ no solo varía $\phi_x$ sino también $\phi_y$ de todas las instancias, esto se puede corroborar en los valores de los ángulos y en el área del círculo.
@@ -280,7 +280,7 @@ De modo que la tarjeta electrónica debe ir en la cabeza de las personas, durante
   
     \begin{figure}[htbp]
     	\centering
-    	\includegraphics[width=0.5\textwidth]{bno055}
+    	\includegraphics[width=0.5\textwidth]{./pictures/bno055}
     	\caption{}\label{fig: figura}
     \end{figure}
     
@@ -288,7 +288,7 @@ De modo que la tarjeta electrónica debe ir en la cabeza de las personas, durante
  Debido a las restricciones de peso y tamaño se utilizó un arduino micro, el cual es la versión más pequeña del arduino con 4.8x1.8cm y esto se debe a que es una versión más limitada en cuanto a periféricos y módulos, sin embargo, es adecuada para el uso que se le da en el proyecto, únicamente se utilizará para obtener los datos del imu mediante comunicación I2C y enviarlos a la computadora por comunicación serial. El arduino se alimenta mínimo con 7v para que su regulador interno regule a 5v el microcontrolador que usa.
     \begin{figure}[htbp]
     	\centering
-    	\includegraphics[width=0.5\textwidth]{arduino}
+    	\includegraphics[width=0.5\textwidth]{./pictures/arduino}
     	\caption{}\label{fig: figura}
     \end{figure}
     
@@ -298,7 +298,7 @@ Los xbee son módulos inalámbricos creados para la comunicación inalámbrica entre
 
     \begin{figure}[htbp]
     	\centering
-    	\includegraphics[width=0.4\textwidth]{xbee}
+    	\includegraphics[width=0.4\textwidth]{./pictures/xbee}
     	\caption{}\label{fig: figura}
     \end{figure}
 
@@ -308,18 +308,18 @@ Los xbee son módulos inalámbricos creados para la comunicación inalámbrica entre
        
        \begin{figure}[htbp]
        	\centering
-       	\includegraphics[width=0.2\textwidth]{TPS61093}
+       	\includegraphics[width=0.2\textwidth]{./pictures/TPS61093}
        	\caption{}\label{fig: figura}
        \end{figure}
        En la imagen 5.5 se puede ver el esquemático de la tarjeta y en la 5.6 el pcb.
         \begin{figure}[htbp]
            	\centering
-           	\includegraphics[width=1.\textwidth]{schematic}
+           	\includegraphics[width=1.\textwidth]{./pictures/schematic}
            	\caption{}\label{fig: figura}
         \end{figure}
     \begin{figure}[htbp]
 	   	\centering
-	   	\includegraphics[width=1.\textwidth]{board}
+	   	\includegraphics[width=1.\textwidth]{./pictures/board}
 	   	\caption{}\label{fig: figura}
     \end{figure}
     Adicionalmente se creo una pequeña tarjeta para la recepción de datos a través del otro xbee y envío a la computadora mediante un cable con convertidor de rs232 a usb. Más adelante se detallará el programa para la recepción de datos.
@@ -328,19 +328,19 @@ Los xbee son módulos inalámbricos creados para la comunicación inalámbrica entre
     En las siguientes imágenes se presentan: la tarjeta electrónica con el imu, arduino y xbee ya fabricada; la batería recargable de 3.7v y la tarjeta que conecta el xbee receptor de datos con la computadora para poder enviar los datos del imu hacia la computadora.
         \begin{figure}[htbp]
         	\centering
-        	\includegraphics[width=.5\textwidth]{placa1}
-        	\includegraphics[width=.5\textwidth]{placa2}
+        	\includegraphics[width=.5\textwidth]{./pictures/placa1}
+        	\includegraphics[width=.5\textwidth]{./pictures/placa2}
         	\caption{tarjeta con el IMU}\label{fig: figura}
         \end{figure}
         \begin{figure}[htbp]
         	\centering
-        	\includegraphics[width=.3\textwidth]{pila}
+        	\includegraphics[width=.3\textwidth]{./pictures/pila}
         	\caption{batería recargable}\label{fig: figura}
         \end{figure}
         
         \begin{figure}[htbp]
         	\centering
-        	\includegraphics[width=.5\textwidth]{placa3}
+        	\includegraphics[width=.5\textwidth]{./pictures/placa3}
         	\caption{tarjeta receptora de datos}\label{fig: figura}
         \end{figure}
     

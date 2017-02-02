@@ -6,4 +6,13 @@
 *.lot
 *.tcp
 *.tps
+*.out
+*.synctex.gz
+*.toc
+*.fdb_latexmk
+classicthesis-article.pdf
+*~
+.Rhistory
+*.fls
+
 tesis.pdf
